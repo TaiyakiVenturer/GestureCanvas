@@ -1,4 +1,5 @@
 import cv2
+from typing import cast
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 
@@ -7,8 +8,8 @@ from ModelTraining.Testing.LiveTest_DataProcessing import LiveTest_DataProcessor
 
 class GestureCanvas_RandomForest:
     def __init__(self):
-        self.model: RandomForestClassifier = LoadSave.load_model("RandomForest_100")
-        self.scaler: StandardScaler = LoadSave.load_scaler("RandomForest_100")
+        self.model = cast(RandomForestClassifier, LoadSave.load_model("RandomForest_100"))
+        self.scaler = cast(StandardScaler, LoadSave.load_scaler("RandomForest_100"))
         self.DataProcessing = DataProcessor()
 
         self.model.verbose = 0  # 關閉詳細輸出

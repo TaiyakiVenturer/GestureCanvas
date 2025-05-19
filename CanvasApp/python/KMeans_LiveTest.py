@@ -1,5 +1,8 @@
 import cv2
 import pyautogui
+from typing import cast
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
 
 from Models import _LoadSave as LoadSave
 from LiveTest_DataProcessing import LiveTest_DataProcessing as DataProcessing
@@ -7,8 +10,8 @@ from mouse_control import MouseController
 
 class GestureCanvas_KMeans:
     def __init__(self):
-        self.model = LoadSave.load_model("KMeans_2")
-        self.scaler = LoadSave.load_scaler("KMeans_2")
+        self.model = cast(KMeans, LoadSave.load_model("KMeans_2"))
+        self.scaler = cast(StandardScaler, LoadSave.load_scaler("KMeans_2"))
         self.DataProcessing = DataProcessing()
 
         self.mouse = MouseController()

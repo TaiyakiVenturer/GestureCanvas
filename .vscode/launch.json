@@ -2,24 +2,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug: Current File",
+            "name": "Debug Python: 目前檔案",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "cwd": "${fileDirname}",
             "console": "externalTerminal",
-            "justMyCode": false,
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            }
-        },
-        {
-            "name": "Training: External Terminal",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${file}",
-            "cwd": "${fileDirname}",
-            "console": "externalTerminal",
+            "justMyCode": true,
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
             }

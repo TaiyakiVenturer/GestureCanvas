@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from typing import Optional, Tuple
 
 from ModelTraining.Data.DataProcessBase import DataProcessBase
 
@@ -34,7 +35,7 @@ class LiveTest_DataProcessor(DataProcessBase):
         self.cap.release()
         cv2.destroyAllWindows()
 
-    def getCoordData(self, draw=False) -> tuple[np.ndarray, np.ndarray, tuple[float, float]]:
+    def getCoordData(self, draw=False) -> Tuple[Optional[np.ndarray], Optional[np.ndarray], Optional[Tuple[float, float]]]:
         """
         獲取攝影機畫面, 並將畫面轉換為可用於模型預測的格式
 
