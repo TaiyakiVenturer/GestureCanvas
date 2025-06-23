@@ -1,6 +1,7 @@
 import cv2
 import os
 import sys
+from typing import cast
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 
@@ -11,11 +12,9 @@ from ModelTraining.Testing.LiveTest_DataProcessing import LiveTest_DataProcessor
 
 class GestureCanvas_RandomForest:
     def __init__(self):
-        self.model: SVC = LoadSave.load_model("SVC_1")
-        self.scaler: StandardScaler = LoadSave.load_scaler("SVC_1")
+        self.model: SVC = cast(SVC, LoadSave.load_model("SVC_1"))
+        self.scaler: StandardScaler = cast(StandardScaler, LoadSave.load_scaler("SVC_1"))
         self.DataProcessing = DataProcessor()
-
-        self.model.verbose = 0  # 關閉詳細輸出
 
         print("HandRecognition Initialized.")
 
