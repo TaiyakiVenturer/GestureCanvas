@@ -1,63 +1,68 @@
 @echo off
-chcp 65001 > nul
+chcp 950 > nul
 
-echo === Pythonè™›æ“¬ç’°å¢ƒè¨­ç½®è…³æœ¬ ===
+echo === PythonµêÀÀÀô¹Ò³]¸m¸}¥» ===
 echo.
 
-REM æª¢æŸ¥Pythonæ˜¯å¦å®‰è£
-python --version >nul 2>&1
+REM ÀË¬dPython 3.12¬O§_¥i¥Î
+py -3.12 --version >nul 2>&1
 if %errorlevel% neq 0 (
-    echo [éŒ¯èª¤] æœªæ‰¾åˆ°Pythonï¼Œè«‹ç¢ºä¿Pythonå·²å®‰è£ä¸”åŠ å…¥PATH
+    echo [¿ù»~] ¥¼§ä¨ìPython 3.12¡A½Ğ½T«O¤w¦w¸ËPython 3.12
+    echo        ½Ğ¤U¸ü¨Ã¦w¸ËPython 3.12¡Ghttps://www.python.org/downloads/
     pause
     exit /b 1
 )
 
-REM æª¢æŸ¥è™›æ“¬ç’°å¢ƒæ˜¯å¦å­˜åœ¨
+REM Åã¥Ü¨Ï¥ÎªºPythonª©¥»
+echo [«H®§] ¨Ï¥ÎPythonª©¥»¡G
+py -3.12 --version
+
+REM ÀË¬dµêÀÀÀô¹Ò¬O§_¦s¦b
 set VENV_DIR=.venv
 if exist %VENV_DIR%\Scripts\python.exe (
-    echo [ä¿¡æ¯] ä½¿ç”¨ç¾æœ‰è™›æ“¬ç’°å¢ƒ
+    echo [«H®§] ¨Ï¥Î²{¦³µêÀÀÀô¹Ò
 ) else (
-    echo [ä¿¡æ¯] å‰µå»ºæ–°è™›æ“¬ç’°å¢ƒ...
-    python -m venv %VENV_DIR%
+    echo [«H®§] ¨Ï¥ÎPython 3.12³Ğ«Ø·sµêÀÀÀô¹Ò...
+    py -3.12 -m venv %VENV_DIR%
     if %errorlevel% neq 0 (
-        echo [éŒ¯èª¤] è™›æ“¬ç’°å¢ƒå‰µå»ºå¤±æ•—
+        echo [¿ù»~] µêÀÀÀô¹Ò³Ğ«Ø¥¢±Ñ
         pause
         exit /b 1
     )
 )
 
-REM å•Ÿå‹•è™›æ“¬ç’°å¢ƒ
-echo [ä¿¡æ¯] å•Ÿå‹•è™›æ“¬ç’°å¢ƒ...
+REM ±Ò°ÊµêÀÀÀô¹Ò
+echo [«H®§] ±Ò°ÊµêÀÀÀô¹Ò...
 call %VENV_DIR%\Scripts\activate.bat
 if %errorlevel% neq 0 (
-    echo [éŒ¯èª¤] è™›æ“¬ç’°å¢ƒå•Ÿå‹•å¤±æ•—
+    echo [¿ù»~] µêÀÀÀô¹Ò±Ò°Ê¥¢±Ñ
     pause
     exit /b 1
 )
 
-REM æª¢æŸ¥requirements.txtæ˜¯å¦å­˜åœ¨
+REM ÀË¬drequirements.txt¬O§_¦s¦b
 if not exist requirements.txt (
-    echo [éŒ¯èª¤] requirements.txtä¸å­˜åœ¨
+    echo [¿ù»~] requirements.txt¤£¦s¦b
     pause
     exit /b 1
 )
 
-REM æ›´æ–°pip
-echo [ä¿¡æ¯] æ›´æ–°pip...
+REM §ó·spip
+echo [«H®§] §ó·spip...
 python -m pip install --upgrade pip
 
-REM å®‰è£å¥—ä»¶
-echo [ä¿¡æ¯] å®‰è£å¿…è¦å¥—ä»¶...
+REM ¦w¸Ë®M¥ó
+echo [«H®§] ¦w¸Ë¥²­n®M¥ó...
 pip install -r requirements.txt
 
-REM é¡¯ç¤ºå·²å®‰è£çš„å¥—ä»¶
+REM Åã¥Ü¤w¦w¸Ëªº®M¥ó
 echo.
-echo === å·²å®‰è£çš„å¥—ä»¶ ===
+echo === ¤w¦w¸Ëªº®M¥ó ===
 pip list
 
 echo.
 echo =====================================
-echo [å®Œæˆ] è¨­ç½®å®Œæˆï¼Œè™›æ“¬ç’°å¢ƒå·²å•Ÿå‹•ï¼Œè¼¸å…¥deactivateå¯é€€å‡º
+echo [§¹¦¨] ³]¸m§¹¦¨¡AµêÀÀÀô¹Ò¤w±Ò°Ê¡A¿é¤Jdeactivate¥i°h¥X
 echo =====================================
 
 pause
