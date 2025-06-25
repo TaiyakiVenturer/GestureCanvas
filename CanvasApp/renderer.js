@@ -306,6 +306,11 @@ function saveCanvasState() { // 儲存畫布狀態
     redoStack = [];
 }
 
+function clearCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  saveCanvasState();
+}
+
 const toolbar = document.getElementById('toolbar');
 const toolbarDivider = document.getElementById('toolbar-divider');
 
@@ -370,6 +375,8 @@ document.getElementById('shape-color').addEventListener('change', (e) => {sc = e
 document.getElementById('shape-size').addEventListener('input', (e) => {ss = e.target.value;});
 
 document.getElementById('eraser-size').addEventListener('input', (e) => {es = e.target.value * 3;});
+
+document.getElementById('clear-button').addEventListener('click', clearCanvas);
 
 document.getElementById('pen-type').addEventListener('change', (e) => {
     const penType = e.target.value;

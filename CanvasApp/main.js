@@ -35,11 +35,25 @@ app.whenReady().then(() => {
   pythonChild.stdout.on('data', (data) => {
     console.log('Python output:', data);
     if (mainWindow.isVisible()) {
-      if (data.trim() === '1') {
-        webContents.executeJavaScript("setActiveTool('eraser-tool')");
-      } else if (data.trim() === '0') {
-        webContents.executeJavaScript("setActiveTool('pen-tool')");
+      switch (data.trim()) {
+        case '0':
+          webContents.executeJavaScript("setActiveTool('pen-tool')");
+          break;
+        case '1':
+          webContents.executeJavaScript("setActiveTool('eraser-tool')");
+          break;
+        case '2':
+          webContents.executeJavaScript("setActiveTool('shape-tool')");
+        case '3':
+          webContents.executeJavaScript("clearCanvas()");
+          break;
+        case '4':
+          app.quit();
+          break;
+        default:
+          console.log('Python 輸出:', data);
       }
+
     }
   });
 
